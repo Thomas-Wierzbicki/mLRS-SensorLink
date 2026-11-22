@@ -348,3 +348,14 @@
     #define DEVICE_IS_RECEIVER
   #endif
 #endif
+
+#if defined TX_HELTEC_V43_868_ESP32S3 || defined RX_HELTEC_V43_868_ESP32S3
+#define DEVICE_NAME "Heltec V4.3 868"
+#define DEVICE_HAS_SX126x
+#define FREQUENCY_BAND_868_MHZ
+#ifdef TX_HELTEC_V43_868_ESP32S3
+#define DEVICE_IS_TRANSMITTER
+#else
+#define DEVICE_IS_RECEIVER
+#endif
+#endif

@@ -43,7 +43,11 @@
 #include "../modules/esp-lib/esp-eeprom.h"
 #include "../modules/esp-lib/esp-spi.h"
 #ifdef USE_SERIAL
+#if defined TX_HELTEC_V43_868_ESP32S3 || defined RX_HELTEC_V43_868_ESP32S3
+#include "../Common/hal/esp/heltec-usb-uartb.h"
+#else
 #include "../modules/esp-lib/esp-uartb.h"
+#endif
 #endif
 #if defined USE_COM && !defined DEVICE_HAS_COM_ON_USB
 #include "../modules/esp-lib/esp-uartc.h"

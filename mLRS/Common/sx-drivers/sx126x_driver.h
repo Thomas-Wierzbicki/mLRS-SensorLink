@@ -233,7 +233,9 @@ class Sx126xDriverCommon : public Sx126xDriverBase
         // set DIO2 as RF control switching
         // check the RF module if antenna switching is internally connected to DIO2
         // E22-900M rf switching controlled by IO pin of MCU
-        // SetDio2AsRfSwitchControl(SX126X_DIO2_AS_RF_SWITCH);
+        #ifdef SX126X_USE_DIO2_RF_SWITCH
+        SetDio2AsRfSwitchControl(SX126X_DIO2_AS_RF_SWITCH);
+#endif
 
         SetAutoFs(true); // SetRxTxFallbackMode to FS
 

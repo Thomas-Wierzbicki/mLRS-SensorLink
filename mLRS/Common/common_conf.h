@@ -121,6 +121,19 @@
 #endif
 
 //-------------------------------------------------------
+#if defined TX_HELTEC_V43_868_ESP32S3 || defined RX_HELTEC_V43_868_ESP32S3
+#undef BIND_PHRASE
+#define BIND_PHRASE "da1twd"
+#undef SETUP_MODE
+#define SETUP_MODE MODE_19HZ
+#undef SETUP_TX_CHANNELS_SOURCE
+#define SETUP_TX_CHANNELS_SOURCE 0
+#undef SETUP_RX_SERIAL_BAUDRATE
+#define SETUP_RX_SERIAL_BAUDRATE 1
+#undef SETUP_RX_SERIAL_LINK_MODE
+#define SETUP_RX_SERIAL_LINK_MODE 0
+#endif
+
 // User-adjustable System Configs
 //-------------------------------------------------------
 

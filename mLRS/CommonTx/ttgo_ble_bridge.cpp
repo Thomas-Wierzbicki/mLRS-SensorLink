@@ -82,7 +82,11 @@ void subscribe_peer(unsigned i, NimBLEAdvertisedDevice& device, std::string id) 
 }
 
 void run(void*) {
+#ifdef TX_HELTEC_V43_868_ESP32S3
+    NimBLEDevice::init("Heltec_mLRS_TX");
+#else
     NimBLEDevice::init("TTGO_mLRS_TX");
+#endif
     NimBLEScan* scan = NimBLEDevice::getScan();
     scan->setActiveScan(true); // Name is in Thingy's scan response.
     scan->setInterval(160);

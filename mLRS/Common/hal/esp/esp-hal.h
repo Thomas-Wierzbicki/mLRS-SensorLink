@@ -182,3 +182,7 @@
 #if defined TX_TTGO_T3_V16_868_ESP32 || defined RX_TTGO_T3_V16_868_ESP32
 #include "hal-ttgo-t3-v16-868-esp32.h"
 #endif
+
+#if defined TX_HELTEC_V43_868_ESP32S3 || defined RX_HELTEC_V43_868_ESP32S3
+#include "hal-heltec-v43-868-esp32s3.h"
+#endif

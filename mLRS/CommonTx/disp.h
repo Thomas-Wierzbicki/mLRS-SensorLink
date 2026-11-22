@@ -276,7 +276,7 @@ uint16_t keys, i, keys_new;
 
     if (!initialized) return;
 
-    #ifdef TX_TTGO_T3_V16_868_ESP32
+    #if defined TX_TTGO_T3_V16_868_ESP32 || defined TX_HELTEC_V43_868_ESP32S3
     // Automatischer Wechsel der Statusseiten nach 15 Sekunden.
     static uint16_t auto_page_ticks = 0;
 

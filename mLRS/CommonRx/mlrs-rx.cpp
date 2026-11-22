@@ -40,7 +40,11 @@
 #include "../modules/esp-lib/esp-eeprom.h"
 #include "../modules/esp-lib/esp-spi.h"
 #ifdef USE_SERIAL
+#if defined TX_HELTEC_V43_868_ESP32S3 || defined RX_HELTEC_V43_868_ESP32S3
+#include "../Common/hal/esp/heltec-usb-uartb.h"
+#else
 #include "../modules/esp-lib/esp-uartb.h"
+#endif
 #endif
 #ifdef USE_DEBUG
 #ifdef DEVICE_HAS_DEBUG_SWUART
@@ -567,7 +571,7 @@ INITCONTROLLER_ONCE
     stack_check_init();
 RESTARTCONTROLLER
     init_hw();
-#ifdef RX_TTGO_T3_V16_868_ESP32
+#if defined RX_TTGO_T3_V16_868_ESP32 || defined RX_HELTEC_V43_868_ESP32S3
     ttgo_rx_display.Init();
 #endif
     DBG_MAIN(dbg.puts("\n\n\nHello\n\n");)
@@ -997,7 +1001,7 @@ dbg.puts(s8toBCD_s(stats.last_rssi2));*/
     msp.Do();
     dronecan.Do();
 
-#ifdef RX_TTGO_T3_V16_868_ESP32
+#if defined RX_TTGO_T3_V16_868_ESP32 || defined RX_HELTEC_V43_868_ESP32S3
     ttgo_rx_display.Do(connected(), stats.GetLastRssi(), stats.last_snr1,
                        stats.GetLQ_rc(), Setup.Rx.SerialLinkMode == SERIAL_LINK_MODE_TRANSPARENT);
 #endif
