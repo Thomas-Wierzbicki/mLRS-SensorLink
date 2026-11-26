@@ -82,7 +82,7 @@ void subscribe_peer(unsigned i, NimBLEAdvertisedDevice& device, std::string id) 
 }
 
 void run(void*) {
-#ifdef TX_HELTEC_V43_868_ESP32S3
+#if defined TX_HELTEC_V43_868_ESP32S3 || defined TX_HELTEC_V2_868_ESP32
     NimBLEDevice::init("Heltec_mLRS_TX");
 #else
     NimBLEDevice::init("TTGO_mLRS_TX");

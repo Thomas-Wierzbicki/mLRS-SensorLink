@@ -1,0 +1,7 @@
+# Tested direct dependencies; transitive dependencies are resolved by pip.
+# EmPy 4 is incompatible with this setup's selected generator version.
+empy==3.3.4
+dronecan==1.0.27
+pexpect==4.9.0
+lxml==6.1.3
+intelhex==2.3.0

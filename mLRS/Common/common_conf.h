@@ -107,7 +107,7 @@
 
 
 // Defaults only for the experimental TTGO serial-link targets.
-#if defined TX_TTGO_T3_V16_868_ESP32 || defined RX_TTGO_T3_V16_868_ESP32
+#if defined TX_TTGO_T3_V16_868_ESP32 || defined RX_TTGO_T3_V16_868_ESP32 || defined TX_HELTEC_V2_868_ESP32 || defined RX_HELTEC_V2_868_ESP32
 #undef BIND_PHRASE
 #define BIND_PHRASE "da1twd"
 #undef SETUP_MODE

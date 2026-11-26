@@ -9,6 +9,12 @@ import shutil
 import re
 import sys
 
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / 'tools'))
+from setup_cleanup import reset_generated_dir
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 
 #options to set
 
@@ -36,11 +42,7 @@ xmlfile = mavlinkdialect
 
 print('----------')
 print('kill out dir')
-try:
-    shutil.rmtree(outdir)
-except:
-    pass    
-os.mkdir(outdir)
+reset_generated_dir(Path(__file__).resolve().parent / outdir)
 print('----------')
 
 opts = mavgen.Opts(outdir, parse_flags=mavflags.PARSE_FLAGS_WARNING_ENUM_VALUE_MISSING)
@@ -52,5 +54,5 @@ try:
 except Exception as ex:
     exStr = str(ex)
     print('Error Generating Headers','{0!s}'.format(exStr))
-    exit()
+    sys.exit(1)
 

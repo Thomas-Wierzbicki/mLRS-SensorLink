@@ -14,6 +14,11 @@ import shutil
 import re
 import sys
 
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / 'tools'))
+from setup_cleanup import reset_generated_dir
+import subprocess
+
 
 mLRSProjectdirectory = os.path.dirname(os.path.abspath(__file__))
 mLRSdirectory = os.path.join(mLRSProjectdirectory,'mLRS')
@@ -24,36 +29,23 @@ outdir = 'out'
 def kill_outdir():
     print('----------')
     print('kill out dir')
-    try:
-        shutil.rmtree(outdir)
-    except:
-        pass
-    os.mkdir(outdir)
+    reset_generated_dir(Path(__file__).resolve().parent / outdir)
     print('----------')
-
-
-def os_system(arg):
-    res = os.system(arg)
-    if res != 0:
-        print('# ERROR (errno =',res,') DONE #')
-        os.system("pause")
-        exit(1)
 
 
 def generate_dsdl():
     print('----------------------------------------')
     print(' run dronecan_dsdlc/dronecan_dsdlc.py')
     print('----------------------------------------')
-    #os.chdir(os.path.join(mLRSdirectory,'Common','mavlink'))
-
-    os_system(
-        sys.executable + ' ' + os.path.join('..','..','modules','dronecan','dronecan_dsdlc','dronecan_dsdlc.py')
-        + ' -O ' + os.path.join(outdir)
-        + ' ' + os.path.join('..','..','modules','dronecan','DSDL','dronecan')
-        + ' ' + os.path.join('..','..','modules','dronecan','DSDL','uavcan')
-        #+ ' ' + os.path.join('..','..','modules','dronecan','DSDL','com')
-        #+ ' ' + os.path.join('..','..','modules','dronecan','DSDL','ardupilot')
-    )
+    # An argument list preserves spaces in Python and project paths.
+    command = [
+        sys.executable,
+        os.path.join('..', '..', 'modules', 'dronecan', 'dronecan_dsdlc', 'dronecan_dsdlc.py'),
+        '-O', outdir,
+        os.path.join('..', '..', 'modules', 'dronecan', 'DSDL', 'dronecan'),
+        os.path.join('..', '..', 'modules', 'dronecan', 'DSDL', 'uavcan'),
+    ]
+    subprocess.run(command, check=True)
 
 
 desired_dsdl_list = [
@@ -150,6 +142,7 @@ if __name__ == "__main__":
             cmdline_nopause = True
 
 
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     kill_outdir()
     generate_dsdl()
     remove_dsdl()

@@ -1,12 +1,15 @@
 // TTGO T3 V1.6 receiver OLED. GPL-3.0, based on the mLRS project.
 #pragma once
-#if defined RX_TTGO_T3_V16_868_ESP32 || defined RX_HELTEC_V43_868_ESP32S3
+#if defined RX_TTGO_T3_V16_868_ESP32 || defined RX_HELTEC_V43_868_ESP32S3 || defined RX_HELTEC_V2_868_ESP32
 
 #include <stdio.h>
 #include "ttgo_rx_display_state.h"
 #ifdef RX_HELTEC_V43_868_ESP32S3
 #define I2C_SDA_IO IO_P17
 #define I2C_SCL_IO IO_P18
+#elif defined RX_HELTEC_V2_868_ESP32
+#define I2C_SDA_IO IO_P4
+#define I2C_SCL_IO IO_P15
 #else
 #define I2C_SDA_IO IO_P21
 #define I2C_SCL_IO IO_P22

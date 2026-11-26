@@ -571,7 +571,7 @@ INITCONTROLLER_ONCE
     stack_check_init();
 RESTARTCONTROLLER
     init_hw();
-#if defined RX_TTGO_T3_V16_868_ESP32 || defined RX_HELTEC_V43_868_ESP32S3
+#if defined RX_TTGO_T3_V16_868_ESP32 || defined RX_HELTEC_V43_868_ESP32S3 || defined RX_HELTEC_V2_868_ESP32
     ttgo_rx_display.Init();
 #endif
     DBG_MAIN(dbg.puts("\n\n\nHello\n\n");)
@@ -1001,7 +1001,7 @@ dbg.puts(s8toBCD_s(stats.last_rssi2));*/
     msp.Do();
     dronecan.Do();
 
-#if defined RX_TTGO_T3_V16_868_ESP32 || defined RX_HELTEC_V43_868_ESP32S3
+#if defined RX_TTGO_T3_V16_868_ESP32 || defined RX_HELTEC_V43_868_ESP32S3 || defined RX_HELTEC_V2_868_ESP32
     ttgo_rx_display.Do(connected(), stats.GetLastRssi(), stats.last_snr1,
                        stats.GetLQ_rc(), Setup.Rx.SerialLinkMode == SERIAL_LINK_MODE_TRANSPARENT);
 #endif

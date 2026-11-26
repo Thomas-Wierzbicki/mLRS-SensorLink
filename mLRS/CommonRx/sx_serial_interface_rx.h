@@ -55,7 +55,7 @@ class tRxSxSerial : public tSerialBase
             return;
         }
         serial->putbuf(buf, len); // send to serial
-#if defined RX_TTGO_T3_V16_868_ESP32 || defined RX_HELTEC_V43_868_ESP32S3
+#if defined RX_TTGO_T3_V16_868_ESP32 || defined RX_HELTEC_V43_868_ESP32S3 || defined RX_HELTEC_V2_868_ESP32
         ttgo_rx_display.Receive(buf, len); // copy only; UART data is unchanged
 #endif
     }
